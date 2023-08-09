@@ -5,17 +5,20 @@ body{
 }
 
 .container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     position: relative;
     width: 100vw;
     height: 100vh;
     overflow-x: hidden;
 }
 
-.title{
+/* .title{
     display: flex;
     flex-direction: column;
     align-items: center;
-}
+} */
 
 .title .main{
     background: #FFE5EC;
@@ -36,11 +39,13 @@ body{
     margin: 30px 0;
     padding: 10px 25px;
     font-size: 1.3rem;
-    border: none;
+    background: #F0F0F0;
     font-family: 'Josefin Sans', 'Roboto', sans-serif;
     border-radius: 40px;
-    color: #E38FAA;
     cursor: pointer;
+    border: none;
+    outline: none;
+    color: #E38FAA;
 }
 
 #sakura{

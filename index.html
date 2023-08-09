@@ -13,9 +13,45 @@
         <div class="title">
             <div class="main">sakura scrolls</div>
             <div class="sub">gateway to a world of literary enchantment and artistic adventure</div>
-            <button class="new-book">unroll a new tale</button>
         </div>
+        <button class="new-book">unroll a new tale</a></button>
         <img src="./photos/sakura.jpg" id="sakura" alt="sakura.jpg">
+        <div class="popup">
+            <div class="close-btn">&times;</div>
+            <form action="#" method="post">
+                <h2>New Book</h2>
+                <div class="form-element">
+                    <label for="title">Title</label>
+                    <input type="text" id="title" placeholder="Enter title" required>
+                </div>
+                <div class="form-element">
+                    <label for="author"></label>
+                    <input type="text" id="author" placeholder="Enter author" required>
+                </div>
+                <div class="form-element">
+                    <label for="rating"></label>
+                    <input type="number" id="rating" placeholder="Enter personal rating (1-10)" required>
+                </div>
+                <div class="form-element">
+                    <label for="pages"></label>
+                    <input type="number" id="pages" placeholder="Enter number of pages" required>
+                </div>
+                <div class="form-element">
+                    <label for="review"></label>
+                    <textarea name="review" id="review" cols="30" rows="10" placeholder="Enter Review/Notes"></textarea>
+                </div>
+                <div class="form-element">
+                    <input type="checkbox" id="finished">
+                    <label for="finished">Finished Reading</label>
+                    <input type="checkbox" id="current">
+                    <label for="currently">Currently Reading</label>
+                    <input type="checkbox" id="willread">
+                    <label for="willread">Will Read</label>
+                    
+                </div>
+            </form>
+        </div>
     </div>
+<script src="script.js"></script>
 </body>
 </html>
