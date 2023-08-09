@@ -14,42 +14,45 @@
             <div class="main">sakura scrolls</div>
             <div class="sub">gateway to a world of literary enchantment and artistic adventure</div>
         </div>
-        <button class="new-book">unroll a new tale</a></button>
+        <div class="newbook-btn"><button id="new-book">unroll a new tale</button></div>
         <img src="./photos/sakura.jpg" id="sakura" alt="sakura.jpg">
         <div class="popup">
             <div class="close-btn">&times;</div>
             <form action="#" method="post">
-                <h2>New Book</h2>
+                <h2>Add New Book</h2>
                 <div class="form-element">
                     <label for="title">Title</label>
                     <input type="text" id="title" placeholder="Enter title" required>
                 </div>
                 <div class="form-element">
-                    <label for="author"></label>
+                    <label for="author">Author</label>
                     <input type="text" id="author" placeholder="Enter author" required>
                 </div>
                 <div class="form-element">
-                    <label for="rating"></label>
+                    <label for="rating">Rating</label>
                     <input type="number" id="rating" placeholder="Enter personal rating (1-10)" required>
                 </div>
                 <div class="form-element">
-                    <label for="pages"></label>
+                    <label for="pages">Pages</label>
                     <input type="number" id="pages" placeholder="Enter number of pages" required>
                 </div>
-                <div class="form-element">
-                    <label for="review"></label>
-                    <textarea name="review" id="review" cols="30" rows="10" placeholder="Enter Review/Notes"></textarea>
+                <div class="form-element review">
+                    <label for="review">Review</label>
+                    <textarea name="review" id="review" cols="30" rows="5" placeholder="Enter Review/Notes"></textarea>
                 </div>
-                <div class="form-element">
+                <div class="form-element status">
                     <input type="checkbox" id="finished">
                     <label for="finished">Finished Reading</label>
                     <input type="checkbox" id="current">
                     <label for="currently">Currently Reading</label>
                     <input type="checkbox" id="willread">
                     <label for="willread">Will Read</label>
-                    
                 </div>
+                <button id="submit" type="submit">Create Card</button>
             </form>
+        </div>
+        <div class="content">
+            
         </div>
     </div>
 <script src="script.js"></script>

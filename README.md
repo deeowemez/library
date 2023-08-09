@@ -3,7 +3,8 @@
 a logbook made with html css and js that allows adding books with their own details
 
 Things I've Learnt:
-1. 
+1. creating a popup window 
+    - using css and js to manipulate opacity of popup div whenever button for enabling or disabling popup is clicked
 
 
 
