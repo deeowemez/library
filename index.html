@@ -10,12 +10,14 @@
 </head>
 <body>
     <div class="container">
-        <div class="title">
-            <div class="main">sakura scrolls</div>
-            <div class="sub">gateway to a world of literary enchantment and artistic adventure</div>
+        <div class="heading">
+            <div class="title">
+                <div class="main">sakura scrolls</div>
+                <div class="sub">gateway to a world of literary enchantment and artistic adventure</div>
+            </div>
+            <div class="newbook-btn"><button id="new-book">unroll a new tale</button></div>
+            <img src="./photos/sakura.jpg" id="sakura" alt="sakura.jpg">
         </div>
-        <div class="newbook-btn"><button id="new-book">unroll a new tale</button></div>
-        <img src="./photos/sakura.jpg" id="sakura" alt="sakura.jpg">
         <div class="popup">
             <div class="close-btn">&times;</div>
             <form action="#" method="post">
@@ -41,18 +43,19 @@
                     <textarea name="review" id="review" cols="30" rows="5" placeholder="Enter Review/Notes"></textarea>
                 </div>
                 <div class="form-element status">
-                    <input type="checkbox" id="finished">
+                    <input type="radio" id="finished" name="reading-status" value="finished">
                     <label for="finished">Finished Reading</label>
-                    <input type="checkbox" id="current">
-                    <label for="currently">Currently Reading</label>
-                    <input type="checkbox" id="willread">
+                    <input type="radio" id="current" name="reading-status" value="current">
+                    <label for="current">Currently Reading</label>
+                    <input type="radio" id="willread" name="reading-status" value="willread">
                     <label for="willread">Will Read</label>
                 </div>
                 <button id="submit" type="submit">Create Card</button>
             </form>
         </div>
         <div class="content">
-            
+            <!-- <div class="card"></div>
+            <div class="card"></div> -->
         </div>
     </div>
 <script src="script.js"></script>

@@ -6,13 +6,19 @@ body{
 }
 
 .container{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    position: relative;
+    display: grid;
+    grid-template: 1fr 2fr / 1fr;
     width: 100vw;
     height: 100vh;
     overflow-x: hidden;
+    position: relative;
+}
+
+.heading{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    grid-row: 1/2;
 }
 
 .title .main{
@@ -143,5 +149,22 @@ body{
     border-radius: 10px;
     cursor: pointer;
     font-family: 'Josefin Sans', 'Roboto',sans-serif;
+}
+
+.content{
+    display: grid;
+    height: 100%;
+    gap: 50px;
+    padding: 100px;
+    grid-template-columns: repeat(auto-fit, minmax(250px, .3fr));
+    grid-template-rows: repeat(auto-fit, minmax(300px, .3fr));;
+}
+
+.content .card{
+    /* width: 100px;
+    height: 150px; */
+    background: white;
+    /* box-shadow: 2px 2px 5px 2px rgb(0,0,0,0.15); */
+    box-shadow: 4px 4px 4px 1px #E38FAA;
 }
 
