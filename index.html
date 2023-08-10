@@ -12,10 +12,10 @@
     <div class="container">
         <div class="heading">
             <div class="title">
-                <div class="main">sakura scrolls</div>
+                <div class="main">sakura scrolls library</div>
                 <div class="sub">gateway to a world of literary enchantment and artistic adventure</div>
             </div>
-            <div class="newbook-btn"><button id="new-book">unroll a new tale</button></div>
+            <div class="newbook-btn"><button id="new-book">add a new book!</button></div>
             <img src="./photos/sakura.jpg" id="sakura" alt="sakura.jpg">
         </div>
         <div class="popup">
@@ -32,7 +32,7 @@
                 </div>
                 <div class="form-element">
                     <label for="rating">Rating</label>
-                    <input type="number" id="rating" placeholder="Enter personal rating (1-10)" required>
+                    <input type="number" id="rating" placeholder="Enter personal rating (1-10)" min="1" max="10" required>
                 </div>
                 <div class="form-element">
                     <label for="pages">Pages</label>
@@ -40,7 +40,7 @@
                 </div>
                 <div class="form-element review">
                     <label for="review">Review</label>
-                    <textarea name="review" id="review" cols="30" rows="5" placeholder="Enter Review/Notes"></textarea>
+                    <textarea name="review" id="review" cols="30" rows="5" placeholder="Enter Review/Notes" required></textarea>
                 </div>
                 <div class="form-element status">
                     <input type="radio" id="finished" name="reading-status" value="finished">
@@ -53,10 +53,7 @@
                 <button id="submit" type="submit">Create Card</button>
             </form>
         </div>
-        <div class="content">
-            <!-- <div class="card"></div>
-            <div class="card"></div> -->
-        </div>
+        <div class="content"></div>
     </div>
 <script src="script.js"></script>
 </body>

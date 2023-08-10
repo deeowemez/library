@@ -1,4 +1,5 @@
 let myLibrary = [];
+let elementArray = [];
 
 function Book(title, author, rating, pages, review, finished, current, willread) {
   this.title = title
@@ -31,13 +32,42 @@ function clearFormInput(){
   }
 }
 
-function createCard(title, author, rating, pages, review, finished, current, willread){
-  const content = document.querySelector('.content');
+function createDiv(card, element, className) {
   const div = document.createElement('div');
-  div.classList.add('card');  
-  div.textContent = 'HELO';
-  content.appendChild(div);
+  div.textContent = element;
+  div.classList.add(className);
+  card.appendChild(div);
+
+  const subtext = document.createElement('div');
+  subtext.textContent = className;
+  subtext.classList.add('subtext'); 
+  card.appendChild(subtext);
 }
+
+
+function createCard() {
+  const content = document.querySelector('.content');
+  // const elementArray = ['title', 'author', 'rating', 'pages', 'review', 'finished', 'current', 'willread'];
+  const elementArray = ['title', 'author', 'rating', 'pages', 'review'];
+
+  for (let i = 0; i < myLibrary.length; i++) {
+    const element = myLibrary[i];
+    console.log(element);
+    
+    const card = document.createElement('div');
+    card.classList.add('card');  
+
+    for (let j = 0; j < elementArray.length; j++){
+      const elementProperty = element[elementArray[j]];
+      const propertyName = elementArray[j];
+
+      createDiv(card, elementProperty, propertyName);
+    }
+
+    content.appendChild(card);
+  } 
+}
+
 
 function getFormInput() {
   const title = document.getElementById('title').value;
@@ -48,7 +78,7 @@ function getFormInput() {
   const finished = document.getElementById('finished').checked;
   const current = document.getElementById('current').checked;
   const willread = document.getElementById('willread').checked;
-
+  
   return { title, author, rating, pages, review, finished, current, willread };
 }
 
@@ -72,6 +102,7 @@ form.addEventListener('submit', (event) => {
   event.preventDefault();
   const { title, author, rating, pages, review, finished, current, willread } = getFormInput();
   addBookToLibrary(title, author, rating, pages, review, finished, current, willread);
-  clearFormInput(title, author, rating, pages, review, finished, current, willread);
-  createCard(title, author, rating, pages, review, finished, current, willread);
+  const content = document.querySelector('.content')
+  content.textContent = '';
+  createCard();
 });
