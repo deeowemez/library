@@ -1,6 +1,8 @@
 let myLibrary = [];
 let elementArray = [];
 
+const statusForm = document.querySelector('.form-element.status');
+
 function Book(title, author, rating, pages, review, finished, current, willread) {
   this.title = title
   this.author = author
@@ -33,22 +35,46 @@ function clearFormInput(){
 }
 
 function createDiv(card, element, className) {
-  const div = document.createElement('div');
-  div.textContent = element;
-  div.classList.add(className);
-  card.appendChild(div);
+  const classNameArray = ['title', 'author', 'rating', 'pages', 'review'];
+  if (element === true){
+    const status = document.createElement('div');
+    status.classList.add('result-status');
+    const selectedStatusInput = statusForm.querySelector('input[name="reading-status"]:checked');
+    if (selectedStatusInput){
+      const selectedStatus = selectedStatusInput.value;
+      status.textContent = selectedStatus;
+    } else {
+      status.textContent = "No status selected";
+    }
+    card.appendChild(status);
 
-  const subtext = document.createElement('div');
-  subtext.textContent = className;
-  subtext.classList.add('subtext'); 
-  card.appendChild(subtext);
+  } else if(className === 'status'){
+
+    const subtext = document.createElement('div');
+    subtext.textContent = className;
+    subtext.classList.add('subtext'); 
+    card.appendChild(subtext);
+
+  } else if(classNameArray.includes(className)){
+
+    const div = document.createElement('div');
+    div.textContent = element;
+    div.classList.add(className);
+    card.appendChild(div);
+
+    const subtext = document.createElement('div');
+    subtext.textContent = className;
+    subtext.classList.add('subtext'); 
+    card.appendChild(subtext);
+
+  }
 }
 
 
 function createCard() {
   const content = document.querySelector('.content');
-  // const elementArray = ['title', 'author', 'rating', 'pages', 'review', 'finished', 'current', 'willread'];
-  const elementArray = ['title', 'author', 'rating', 'pages', 'review'];
+  const elementArray = ['title', 'author', 'rating', 'pages', 'review', 'finished', 'current', 'willread', 'status'];
+  
 
   for (let i = 0; i < myLibrary.length; i++) {
     const element = myLibrary[i];
