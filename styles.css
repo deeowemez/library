@@ -137,9 +137,10 @@ body{
     border-radius: 5px;
 }
 
-.popup form .form-element.status{
+.popup form .form-element.status-form{
     display: flex;
 }
+
 
 .popup form button{
     width: 100%;
@@ -160,7 +161,7 @@ body{
     gap: 50px;
     padding: 20px 80px;
     grid-template-columns: repeat(auto-fit, minmax(250px, .1fr));
-    grid-template-rows: repeat(auto-fit, minmax(350px, .3fr));;
+    grid-template-rows: repeat(auto-fit, minmax(380px, .3fr));;
 }
 
 .content .card{
@@ -169,7 +170,8 @@ body{
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 15px;
+    padding: 10px;
+    overflow-y: auto;
 }
 
 .card .title{
@@ -183,5 +185,35 @@ body{
     margin-bottom: 15px;
     font-size: .8rem;
     color: #888;
+}
+
+div.result-status{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    font-size: .8rem;
+    /* width: 5px; */
+}
+
+/* #finished,
+#current,
+#willread{
+    width: 5px; */
+    /* height: 5px;
+} */
+
+.cardButtons{
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+button.editBtn,
+button.delBtn{
+    font-family: 'Josefin Sans', 'Roboto',sans-serif;
+    border: none;
+    outline: none;
+    padding: 3px 20px;
+    border-radius: 5px;
 }
 
