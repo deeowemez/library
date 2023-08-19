@@ -1,8 +1,8 @@
 let myLibrary = [];
 let elementArray = [];
 
-
 const statusForm = document.querySelector('.form-element.status-form');
+const content = document.querySelector('.content');
 
 function Book(title, author, rating, pages, review, finished, notFinished) {
   this.title = title;
@@ -132,6 +132,7 @@ function createCard() {
     delBtn.textContent = 'Delete';
     delBtn.classList.add('delBtn');
     cardButtons.appendChild(delBtn);
+    deleteEventListener(delBtn, card.dataset.index);
 
     //attach buttons to card div, card to content div
     card.appendChild(cardButtons);
@@ -155,6 +156,16 @@ function statusEventListeners() {
   });
 }
 
+function deleteEventListener(delBtn, cardIndex){
+  delBtn.addEventListener('click', () => {
+    myLibrary.splice(`${cardIndex}`, 1);
+    content.innerHTML = '';
+    createCard();
+    console.log(myLibrary);
+  })
+}
+
+
 function getFormInput() {
   const title = document.getElementById('title').value;
   const author = document.getElementById('author').value;
@@ -163,7 +174,6 @@ function getFormInput() {
   const review = document.getElementById('review').value;
   const finished = document.getElementById('finished').checked;
   const notFinished = document.getElementById('notFinished').checked;
-  // const willread = document.getElementById('willread').checked;
   return { title, author, rating, pages, review, finished, notFinished };
 }
 
@@ -191,7 +201,6 @@ form.addEventListener('submit', (event) => {
   content.textContent = '';
   createCard();
   statusEventListeners();
-  editEventListener();
 });
 
 
