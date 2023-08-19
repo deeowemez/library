@@ -1,23 +1,22 @@
 let myLibrary = [];
 let elementArray = [];
-let result = '';
+
 
 const statusForm = document.querySelector('.form-element.status-form');
 
-function Book(title, author, rating, pages, review, finished, current, willread) {
-  this.title = title
-  this.author = author
-  this.rating = rating
-  this.pages = pages
-  this.review = review
-  this.finished = finished
-  this.current = current
-  this.willread = willread
+function Book(title, author, rating, pages, review, finished, notFinished) {
+  this.title = title;
+  this.author = author;
+  this.rating = rating;
+  this.pages = pages;
+  this.review = review;
+  this.finished = finished;
+  this.notFinished = notFinished;
 }
 
-function addBookToLibrary(title, author, rating, pages, review, finished, current, willread) {
+function addBookToLibrary(title, author, rating, pages, review, finished, notFinished) {
   document.querySelector('.popup').classList.remove('active');
-  const book = new Book(title, author, rating, pages, review, finished, current, willread);
+  const book = new Book(title, author, rating, pages, review, finished, notFinished);
   myLibrary.push(book);
   console.log(myLibrary);
 }
@@ -51,32 +50,26 @@ function createDiv(card, element, className) {
   }
 }
 
-function createRadioDiv(card, status, element, className){
-  if (className === 'finished' || className === 'current' || className === 'willread') {
+function createRadioDiv(card, status, element, className, cardNumber){
+  if (className === 'finished' || className === 'notFinished') {
     const statusForm = document.createElement('div');
-    statusForm.classList.add('form-element', 'status-form');
+    statusForm.classList.add('form-element', 'status-form', `${cardNumber}`);
+    let result = '';
     if (element === true) {
       result = 'checked';
     } else result = '';
     switch(className){  
       case ('finished'):
         statusForm.innerHTML = `
-          <input type="radio" id="${className}" class="displayed-reading-status" name="reading-status" value="finished" ${result}>
+          <input type="radio" id="${className}" class="displayed-reading-status" name="reading-status-${cardNumber}" value="finished" ${result}>
           <label for="${className}">Finished Reading</label>`
         ;
         status.appendChild(statusForm);
         break;
-      case ('current'):
+      case ('notFinished'):
         statusForm.innerHTML = `
-          <input type="radio" id="${className}" class="displayed-reading-status" name="reading-status" value="finished" ${result}>
-          <label for="${className}">Currently Reading</label>`
-        ;
-        status.appendChild(statusForm);
-        break;
-      case ('willread'):
-        statusForm.innerHTML = `
-          <input type="radio" id="${className}" class="displayed-reading-status" name="reading-status" value="finished" ${result}>
-          <label for="${className}">Will Read</label>`
+          <input type="radio" id="${className}" class="displayed-reading-status" name="reading-status-${cardNumber}" value="notFinished" ${result}>
+          <label for="${className}">Currently Reading / Will Read</label>`
         ;
         status.appendChild(statusForm);
         break;
@@ -97,7 +90,7 @@ function createRadioDiv(card, status, element, className){
 function createCard() {
   const content = document.querySelector('.content');
   const elementArray = ['title', 'author', 'rating', 'pages', 'review'];
-  const radioArray = ['finished', 'current', 'willread', 'status'];
+  const radioArray = ['finished', 'notFinished', 'status'];
   
   for (let i = 0; i < myLibrary.length; i++) {
     const element = myLibrary[i];
@@ -105,6 +98,9 @@ function createCard() {
     
     const card = document.createElement('div');
     card.classList.add('card');  
+
+    card.dataset.index = i;
+
     const status = document.createElement('div');
     status.classList.add('result-status');
 
@@ -119,9 +115,10 @@ function createCard() {
     // create a div for radio buttons
     for (let k = 0; k < radioArray.length; k++){
       const radioProperty = element[radioArray[k]];
+      console.log('Radio Property: ', radioProperty);
       const propertyName = radioArray[k];
 
-      createRadioDiv(card, status, radioProperty, propertyName);
+      createRadioDiv(card, status, radioProperty, propertyName, card.dataset.index);
     }
 
     //create edit and del buttons
@@ -142,25 +139,21 @@ function createCard() {
   } 
 }
 
-// function attachStatusEventListeners() {
-//   const radioInputs = document.querySelectorAll('.status-form .displayed-reading-status');
-//   console.log(radioInputs);
-//   radioInputs.forEach(input => {
-//     input.addEventListener('change', (event) => {
-//       console.log(myLibrary[willread]);
-//       console.log('Event: ');
-//       console.log(event);
-//       // const radioName = event.target;
-//       console.log('event.target ');
-//       console.log(event.target)
-//       console.log('event.target.value: ');
-//       console.log(event.target.value);
-//       const cardIndex = parseInt(event.target.closest('.card').dataset.index);
-//       console.log('cardIndex: ' + cardIndex);
-//       // myLibrary[cardIndex][radioName] = event.target.value; // Update the radio value in the book object
-//     });
-//   });
-// }
+function statusEventListeners() {
+  const radioInputs = document.querySelectorAll('.status-form .displayed-reading-status');
+  radioInputs.forEach(input => {
+    input.addEventListener('change', (event) => {
+      const currentCardIndex = parseInt(event.target.closest('.card').dataset.index);
+      for (let l = 0; l < radioInputs.length; l++){
+        myLibrary[currentCardIndex][radioInputs[l].value] = false;
+        // console.log(myLibrary[cardIndex][radioInputs[l].value]);
+      }
+      // console.log('event.target.value' + event.target.value);
+      myLibrary[currentCardIndex][`${event.target.value}`] = true;
+      console.log(myLibrary);
+    });
+  });
+}
 
 function getFormInput() {
   const title = document.getElementById('title').value;
@@ -169,10 +162,9 @@ function getFormInput() {
   const pages = document.getElementById('pages').value;
   const review = document.getElementById('review').value;
   const finished = document.getElementById('finished').checked;
-  const current = document.getElementById('current').checked;
-  const willread = document.getElementById('willread').checked;
-  
-  return { title, author, rating, pages, review, finished, current, willread };
+  const notFinished = document.getElementById('notFinished').checked;
+  // const willread = document.getElementById('willread').checked;
+  return { title, author, rating, pages, review, finished, notFinished };
 }
 
 
@@ -193,12 +185,13 @@ closebtn.addEventListener('click', () => {
 const form =  document.querySelector('form');
 form.addEventListener('submit', (event) => {
   event.preventDefault();
-  const { title, author, rating, pages, review, finished, current, willread } = getFormInput();
-  addBookToLibrary(title, author, rating, pages, review, finished, current, willread);
+  const { title, author, rating, pages, review, finished, notFinished } = getFormInput();
+  addBookToLibrary(title, author, rating, pages, review, finished, notFinished);
   const content = document.querySelector('.content');
   content.textContent = '';
   createCard();
-  // attachStatusEventListeners(); 
+  statusEventListeners();
+  editEventListener();
 });
 
 
