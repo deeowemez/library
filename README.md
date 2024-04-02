@@ -1,4 +1,4 @@
-![image](https://github.com/deeowemez/library/assets/53809101/7a1b640b-442c-4767-bc56-b98100bfe404)# library
+Library (a project from The Odin Project)
 
 a logbook made with html css and js that allows adding books with their own details
 
@@ -8,6 +8,7 @@ Things I've Learnt:
 2. create div elements through js
     - div elements are created based on user interactivity
 
+View the webpage here: https://deeowemez.github.io/library/
 
 Initial Dashboard
 ![image](https://github.com/deeowemez/library/assets/53809101/ee2ffe35-c04e-4ae9-ab25-d54c55a21dfc)
